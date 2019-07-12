@@ -6,7 +6,7 @@ benign_url_data['URL'] = 'http://' + benign_url_data['domain'].astype(str)
 benign_url_data['status']='None'
 
 print(benign_url_data.head())
-benign_url_data = benign_url_data.iloc[761:]
+benign_url_data = benign_url_data.iloc[1000:]
 print(benign_url_data.head())
 
 print("start")
@@ -19,7 +19,7 @@ for index, row in benign_url_data.iterrows():
         print("processing ", index)
         url = row['URL']
         download_folder = '/home/user/datasets/processed/'
-        kwargs = {'bypass_robots': True, 'project_name': 'benign-data', 'LOAD_CSS': False, 'LOAD_IMAGES': False,'OVER_WRITE': False, 'ALLOWED_FILE_EXT': ['.html','.js']}
+        kwargs = {'bypass_robots': False, 'project_name': 'benign-data', 'LOAD_CSS': False, 'LOAD_IMAGES': False,'OVER_WRITE': False, 'ALLOWED_FILE_EXT': ['.html','.js']}
         save_webpage(url, download_folder, **kwargs)
         benign_url_data.at[index, 'status']='success'
         if(index%50==0):

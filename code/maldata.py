@@ -8,7 +8,7 @@ mal_url_data.reset_index()
 
 #benign_url_data['URL'] = 'http://' + benign_url_data['domain'].astype(str)
 #benign_url_data.head()
-mal_url_data = mal_url_data.iloc[1300:]
+mal_url_data = mal_url_data.iloc[1942:]
 print(mal_url_data.head())
 
 from pywebcopy import save_webpage
@@ -26,9 +26,6 @@ for index, row in mal_url_data.iterrows():
         mal_url_data.at[index, 'status']='success'
         if(index%50==0):
          mal_url_data.to_csv('/home/user/mal_data_processing.csv',encoding='utf-8',index=False)
-    except pywebcopy.exceptions.AccessError as error:
-        print(error)
-        mal_url_data.at[index, 'status']='fail'
     except Exception as error:
         print(error)
         mal_url_data.at[index, 'status']='fail'
